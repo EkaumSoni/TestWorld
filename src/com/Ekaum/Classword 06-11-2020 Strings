@@ -1,0 +1,43 @@
+
+import java.util.*;
+
+public class CharacterCount {
+    //    Peter and his friend
+    public static void main(String[] args) {
+
+        System.out.print("Enter a phrase");
+        Scanner userInput = new Scanner(System.in);
+        String userPhrase = userInput.nextLine();
+
+        int indexOfSpace = userPhrase.indexOf(" ");
+        String firstWord = userPhrase.substring(0, indexOfSpace+1);
+
+        //System.out.println(firstWord);
+        int WordLength = userPhrase.length();
+
+        char character = ' ';
+        char repeatedChar = ' ';
+        int charCount = 0;
+
+
+        for (int placeholder1 = 0; placeholder1 < firstWord.length(); placeholder1++) {
+            character = userPhrase.charAt(placeholder1);
+            if(character != ' ') {
+                charCount++;
+                String temp = userPhrase.substring(placeholder1+1);
+                indexOfSpace = temp.indexOf(character);
+
+                while (indexOfSpace > -1) {
+                    charCount++;
+                    temp = temp.substring(placeholder1 + 1);
+                    indexOfSpace = temp.indexOf(character);
+                }
+                userPhrase = userPhrase.replace(character, ' ');
+            System.out.println(character + " " + charCount);
+                charCount = 0;
+            }
+        }
+
+
+    }
+}
