@@ -1,0 +1,33 @@
+package com.Ekaum;
+
+import java.util.*;
+
+
+public class Challenge_ConditionalStatements {
+    public static void main(String[] args) {
+        Random random = new Random();
+        int integer;
+        char playAgain;
+        do {
+            integer = random.nextInt(137);
+            System.out.println("Your number was " + integer);
+            WeirdNotWeird(integer);
+            Scanner userInput = new Scanner(System.in);
+            System.out.println("Do you  wanna play again? Y or N");
+            playAgain = userInput.next().charAt(0);
+        } while (playAgain =='Y');
+
+    }
+
+    public static void WeirdNotWeird(int integer) {
+        if (integer % 2 == 1) {
+            System.out.println("Weird");
+        } else if (integer % 2 == 0 && integer >= 2 && integer <= 5) {
+            System.out.println("Not Weird");
+        } else if (integer % 2 == 0 && integer >= 6 && integer <= 20) {
+            System.out.println("Weird");
+        } else if (integer % 2 == 0 && integer > 20) {
+            System.out.println("Not Weird");
+        }
+    }
+}
