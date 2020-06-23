@@ -1,0 +1,53 @@
+/*
+Ekaum Soni
+PseudoCode:
+import java.util
+Place constraints of How many strings user can input and how long they can be
+Create loop for how many strings inputted
+Scan user input of each string
+find even and odd indexes with %==1/%==0
+Print evens and odds separated by a space
+
+ */
+import java.util.*;
+public class String_Challenge {
+    public static void main(String[] args) {
+        int noOfString;
+        Scanner userInput1 = new Scanner(System.in);
+        do {
+            System.out.println("How many strings would you like to input");
+            noOfString = userInput1.nextInt();
+        }while (noOfString<1 || noOfString>10);
+
+
+            for (int loop = 1; loop <= noOfString; loop++) {
+                System.out.println("Enter a string");
+                String stringInput = userInput1.next();
+               if(stringInput.length()>=2){
+                    String recieveWord = output(stringInput);
+                    System.out.println(recieveWord);
+                }
+
+
+            }
+
+    }
+
+    public static String output(String stringInput) {
+        StringBuilder evenString = new StringBuilder();
+        StringBuilder oddString = new StringBuilder();
+        int stringLength = stringInput.length();
+        for (int evenChars = 0; evenChars <= stringLength-1; evenChars = evenChars + 2) {
+            char outputChar = stringInput.charAt(evenChars);
+            evenString.append(outputChar);
+        }
+        for (int oddChars = 1; oddChars <= stringLength-1; oddChars = oddChars + 2) {
+            char outputChar = stringInput.charAt(oddChars);
+            oddString.append(outputChar);
+
+        }
+        return evenString+" "+oddString;
+
+    }
+}
+
