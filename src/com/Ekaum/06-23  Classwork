@@ -1,0 +1,50 @@
+package com.Ekaum;
+
+import java.util.*;
+/*
+Ekaum Soni:
+Pseudocode:
+Import Java.util
+Create random variable
+create an array
+get a random number for length of array
+generate x amt of random numbers into array
+Make method for switching first and second number
+ */
+
+public class ClassWork_06_23_20 {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        int randomLength = rand.nextInt(5) + 5;
+        int[] numbers = new int[randomLength];
+//
+        for (int placeholder = 0; placeholder < numbers.length; placeholder++) {
+            numbers[placeholder] = rand.nextInt(89) + 10;
+        }
+        int firstReplace;
+        int secondReplace;
+
+
+        do {
+            firstReplace = rand.nextInt(numbers.length);
+            secondReplace = rand.nextInt(numbers.length);
+
+        } while (firstReplace == secondReplace);
+
+        System.out.println(firstReplace + " " + secondReplace);
+        System.out.println(Arrays.toString(numbers));
+        swap(numbers, firstReplace, secondReplace);
+
+        System.out.println(Arrays.toString(numbers));
+
+
+    }
+
+    public static int[] swap(int[] numbers, int firstReplace, int secondReplace) {
+        int placeholder3 = firstReplace;
+        numbers[firstReplace] = numbers[secondReplace];
+        numbers[secondReplace] = numbers[placeholder3];
+
+        return numbers;
+    }
+}
