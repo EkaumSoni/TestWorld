@@ -1,0 +1,130 @@
+package com.Ekaum;
+
+import java.io.*;
+import java.util.*;
+
+/*
+PseudoCode:
+Ekaum Soni
+Import java.io.*
+import Scanner
+create a file with 20 different tokens
+Words: Colors (5)
+Integers: Between 100-999 (10)
+Doubles: Between 1-10 (5)
+Ask user if they want to play in a do while loop
+Ask user if they want a word, double or int
+if they guess correctly score ++
+if wrong score stays the same
+Once they dont want to play print score
+Required: Void and Return
+ */
+public class FinalProjectWordGame {
+
+    public static Scanner userInput = new Scanner(System.in);
+
+    public static void main(String[] args) throws FileNotFoundException {
+        welcomeMessage();
+        String playAgain;
+        int Score = 0;
+        int playCounter=0;
+
+        do {
+            File file = new File("/Users/ekaumsoni/IdeaProjects/TestWorld/src/com/Ekaum/listofthings.txt");
+            Scanner fileInput = new Scanner(file);
+            playCounter++;
+            System.out.println("Would you like to guess a animal, integer, or double");
+            String userChoice = userInput.next();
+
+            if (userChoice.equals("color")) {
+                Score = colors(Score, fileInput);
+
+            } else if (userChoice.equals("integer")) {
+                Score=integers(Score, fileInput);
+            } else if (userChoice.equals("double")) {
+                Score=doubles(Score, fileInput);
+            }
+
+            System.out.println("Do you want to play again. Yes or No");
+            playAgain = userInput.next();
+            playAgain = playAgain.toLowerCase();
+            fileInput.close();
+        } while (playAgain.equals("yes"));
+
+        System.out.println("You score was " +Score+" out of " + playCounter);
+
+    }
+
+    public static int colors(int Score, Scanner fileInput) {
+
+        System.out.println("Guess an animal: ");
+        String userGuess = userInput.next();
+
+        while (fileInput.hasNextLine()) {
+            if (fileInput.hasNext()) {
+                String temp = fileInput.next();
+                if (temp.equals(userGuess)) {
+                    Score++;
+                    break;
+                }
+            }
+
+        }
+        return Score;
+
+    }
+
+    public static int integers(int Score, Scanner fileInput) {
+
+        System.out.println("Guess an integer between 1 and 1000: ");
+        int userGuess = userInput.nextInt();
+        boolean flag = false;
+        while (fileInput.hasNextLine()) {
+            if (fileInput.hasNextInt()) {
+                if (fileInput.nextInt() == (userGuess)) {
+                    Score++;
+                    System.out.println("Correct");
+                    break;
+                }
+            }
+            else {
+                String trash = fileInput.next();
+                flag = false;
+            }
+        }
+        return Score;
+
+    }
+
+    public static int doubles(int Score, Scanner fileInput) {
+        System.out.println("Guess a 2 decimal number between 1 and 10: ");
+        double userGuess = userInput.nextDouble();
+        boolean flag = false;
+        userGuess = (((int)(userGuess*100))/100.0);
+        while (fileInput.hasNextLine()) {
+            if (fileInput.hasNextDouble()) {
+                if(userGuess == fileInput.nextDouble()){
+                    flag = true;
+                    Score++;
+                    System.out.println("Correct");
+                    break;
+                }
+
+            } else {
+                String trash = fileInput.next();
+                flag = false;
+            }
+        }
+        return Score;
+    }
+
+    public static void welcomeMessage(){
+        System.out.println(" __          __  _ ");
+        System.out.println(" \\ \\        / / | |");
+        System.out.println("  \\ \\  /\\  / /__| | ___ ___ _ __ ___   ___");
+        System.out.println("   \\ \\/  \\/ / _ \\ |/   /   \\| '_` _ \\ / _ \\");
+        System.out.println("    \\  /\\  /  __/ | (_| (_) | | | | | | __/");
+        System.out.println("     \\/  \\/ \\___|_|\\___\\___/|_| |_| | \\___|");
+    }
+
+}
